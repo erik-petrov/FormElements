@@ -24,6 +24,9 @@ namespace FormElements
         TabControl dynamicTabControl;
         SoundPlayer player;
         SoundPlayer coil;
+        ListBox listBox1;
+        DataGridView dg;
+        MainMenu mn;
         public int count = 1;
         public Form1()
         {
@@ -49,6 +52,8 @@ namespace FormElements
             tn.Nodes.Add(new TreeNode("TextBox"));
             tn.Nodes.Add(new TreeNode("TabControl"));
             tn.Nodes.Add(new TreeNode("MessageBox"));
+            tn.Nodes.Add(new TreeNode("ListBox"));
+            tn.Nodes.Add(new TreeNode("XML file"));
 
             btn = new Button
             {
@@ -200,9 +205,77 @@ namespace FormElements
             jsL.Width = 100;
             js.Controls.Add(jsL);
             dynamicTabControl.TabPages.Add(js);
+            //listBox
+            listBox1 = new ListBox();
+            listBox1.Items.Add("Green");
+            listBox1.Items.Add("Yellow");
+            listBox1.Items.Add("Cyan");
+            listBox1.Items.Add("Gray");
+            listBox1.Location = new Point(600, 250);
+            listBox1.Width = 100; listBox1.Height = 100;
+            listBox1.SelectedIndexChanged += ListBox1_SelectedIndexChanged;
+            //grid
+            DataSet ds = new DataSet();
+            ds.ReadXml(@"../../XMLFile1.xml");
+            dg = new DataGridView();
+            dg.Width = 200;
+            dg.Height = 200;
+            dg.Location = new Point(600, 600);
+            dg.AutoGenerateColumns = true;
+            dg.DataSource = ds;
+            dg.DataMember = "note";
+            //menu
+            mn = new MainMenu();
+            MenuItem mnFile = new MenuItem("File");
+            mnFile.MenuItems.Add("Exit", new EventHandler(menu_exit));
+            mnFile.MenuItems.Add("Open a new background", new EventHandler(bckg_open));
+            mnFile.MenuItems.Add("Browse for a song", new EventHandler(song_open));
+            mn.MenuItems.Add(mnFile);
+            this.Menu = mn;
 
             tree.Nodes.Add(tn);
             this.Controls.Add(tree);
+        }
+
+        private void menu_exit(object sender, EventArgs e)
+		{
+            this.Close();
+		}
+
+        private void song_open(object sender, EventArgs e)
+		{
+            OpenFileDialog fdlg = new OpenFileDialog();
+            fdlg.Title = "Выбери музыку";
+            fdlg.InitialDirectory = @"c:\";
+            fdlg.Filter = "All files (*.*)|*.*|All files (*.*)|*.*";
+            fdlg.FilterIndex = 2;
+            fdlg.RestoreDirectory = true;
+            if (fdlg.ShowDialog() == DialogResult.OK)
+            {
+                player.SoundLocation = fdlg.FileName;
+            }
+            player.PlayLooping();
+        }
+
+        private void bckg_open(object sender, EventArgs e)
+		{
+
+            OpenFileDialog fdlg = new OpenFileDialog();
+            fdlg.Title = "Выбери новый задний фон";
+            fdlg.InitialDirectory = @"c:\";
+            fdlg.Filter = "All files (*.*)|*.*|All files (*.*)|*.*";
+            fdlg.FilterIndex = 2;
+            fdlg.RestoreDirectory = true;
+            if (fdlg.ShowDialog() == DialogResult.OK)
+            {
+                this.BackgroundImage = new Bitmap(fdlg.FileName);
+            }
+
+        }
+
+        private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void Btn3_Click(object sender, EventArgs e)
@@ -371,7 +444,14 @@ namespace FormElements
             {
                 this.Controls.Add(dynamicTabControl);
             }
-            //throw new NotImplementedException();
+            else if (e.Node.Text == "ListBox")
+            {
+                this.Controls.Add(listBox1);
+            }
+            else if (e.Node.Text == "XML file")
+            {
+                this.Controls.Add(dg);
+			}
         }
-    }
+	}
 }
