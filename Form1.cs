@@ -15,7 +15,7 @@ namespace FormElements
     public partial class Form1 : Form
     {
         TreeView tree;
-        Button btn, btn2;
+        Button btn, btn2, btn3;
         Label lbl;
         CheckBox chk, chk2, chk3, chk4;
         RadioButton rad, rad2;
@@ -66,6 +66,16 @@ namespace FormElements
                 Width = 100
             };
             btn2.Click += Btn2_Click;
+            Controls.Add(btn2);
+            btn3 = new Button
+            {
+                Text = "Remove the last tab.",
+                Location = new Point(200, 200),
+                Height = 30,
+                Width = 100
+            };
+            btn3.Click += Btn3_Click;
+            Controls.Add(btn3);
 
             lbl = new Label
             {
@@ -135,7 +145,7 @@ namespace FormElements
                 Text = "Skin"
             };
             rad.CheckedChanged += Rad_CheckedChanged;
-            rad2.CheckedChanged += Rad2_CheckedChanged;
+            rad2.CheckedChanged += Rad_CheckedChanged;
 
             txt = new TextBox
             {
@@ -149,13 +159,13 @@ namespace FormElements
             dynamicTabControl.BackColor = Color.White;
             dynamicTabControl.ForeColor = Color.Black;
             dynamicTabControl.Location = new Point(500, 300);
-            dynamicTabControl.Width = 300;
-            dynamicTabControl.Height = 200;
+            dynamicTabControl.Width = 700;
+            dynamicTabControl.Height = 700;
             //tab1
             TabPage python = new TabPage();
             python.Text = "Python";
-            python.Width = 100;
-            python.Height = 100;
+            python.Width = 700;
+            python.Height = 700;
             Label pythonL = new Label();
             pythonL.Text = "Ugly and slow PL";
             python.Controls.Add(pythonL);
@@ -164,8 +174,8 @@ namespace FormElements
             //tab2
             TabPage sharp = new TabPage();
             sharp.Text = "C Sharp";
-            sharp.Width = 200;
-            sharp.Height = 100;
+            sharp.Width = 700;
+            sharp.Height = 700;
             Label sharpL = new Label();
             sharpL.Text = "Meh.";
             sharpL.Width = 100;
@@ -174,18 +184,17 @@ namespace FormElements
             //tab3
             TabPage php = new TabPage();
             php.Text = "PHP";
-            php.Width = 200;
-            php.Height = 100;
+            php.Width = 700;
+            php.Height = 700;
             Label phpL = new Label();
             phpL.Text = "Disgusting";
             phpL.Width = 100;
-            php.Controls.Add(phpL);
             dynamicTabControl.TabPages.Add(php);
             //
             TabPage js = new TabPage();
             js.Text = "JavaScript";
-            js.Width = 300;
-            js.Height = 100;
+            js.Width = 700;
+            js.Height = 700;
             Label jsL = new Label();
             jsL.Text = "Ugly web PL.";
             jsL.Width = 100;
@@ -196,9 +205,29 @@ namespace FormElements
             this.Controls.Add(tree);
         }
 
+        private void Btn3_Click(object sender, EventArgs e)
+        {
+            string name = Interaction.InputBox("Введи какую(позицию) вкладки удалить.", "Удаление вкладки", "", 500, 500);
+            if (name == "" || Convert.ToInt32(name) <= 0){
+                MessageBox.Show("Неверное число.");
+                return;
+            }
+            dynamicTabControl.TabPages.RemoveAt(Convert.ToInt32(name)-1);
+        }
+
         private void Btn2_Click(object sender, EventArgs e)
         {
-            //string name = Interaction.InputBox("Prompt", "Title", "Default", x_coordinate, y_coordinate);
+            string name = Interaction.InputBox("Введи имя новой вкладки.", "Создание вкладки", "", 500, 500);
+            TabPage n = new TabPage();
+            n.Text = name;
+            n.Width = 300;
+            n.Height = 100;
+            string txt = Interaction.InputBox("Введи текст на вкладке.", "Создание вкладки", "", 500, 500);
+            Label jsL = new Label();
+            jsL.Text = txt;
+            jsL.Width = 100;
+            n.Controls.Add(jsL);
+            dynamicTabControl.TabPages.Add(n);
         }
 
         private void Txt_KeyDown(object sender, KeyEventArgs e)
@@ -220,13 +249,9 @@ namespace FormElements
         private void Rad_CheckedChanged(object sender, EventArgs e)
         {
             Image back = Image.FromFile(@"C:\Users\opilane\source\repos\FormElements\norm.jpg");
+            Image back2 = Image.FromFile(@"C:\Users\opilane\source\repos\FormElements\330x192.png");
             if (rad.Checked) this.BackgroundImage = back;
-        }
-
-        private void Rad2_CheckedChanged(object sender, EventArgs e)
-        {
-            Image back = Image.FromFile(@"C:\Users\opilane\source\repos\FormElements\330x192.png");
-            if (rad2.Checked) this.BackgroundImage = back;
+            else this.BackgroundImage = back2;
         }
 
         private void Chk_CheckedChanged(object sender, EventArgs e)
