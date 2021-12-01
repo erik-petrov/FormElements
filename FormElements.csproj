@@ -77,11 +77,31 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="faces\maksim.jpg" />
     <Content Include="330x192.png" />
+    <Content Include="faces\dota.jpg" />
+    <Content Include="faces\vitas.jpg" />
+    <Content Include="coil.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="menu.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="norm.jpg" />
     <Content Include="razes\close.jpg" />
     <Content Include="razes\far.png" />
     <Content Include="maxresdefault.jpg" />
     <Content Include="razes\mid.png" />
+    <Content Include="vitas.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bat.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="maks.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="faces\zhuki.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
