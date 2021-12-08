@@ -332,7 +332,7 @@ namespace FormElements
             switch (chk.Checked)
             {
                 case true:
-                    player.SoundLocation = AppDomain.CurrentDomain.BaseDirectory + "\\menu.wav";
+                    player.SoundLocation = "../../menu.wav";
                     player.PlayLooping();
                     break;
                 case false:
