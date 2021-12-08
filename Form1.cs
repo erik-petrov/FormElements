@@ -38,7 +38,7 @@ namespace FormElements
             this.Height = 1080;
             this.Width = 1920;
             this.Text = "lol";
-            Image img = new Bitmap(@"C:\Users\opilane\source\repos\FormElements\330x192.png");
+            Image img = new Bitmap(@"../../330x192.png");
             this.BackgroundImage = img;
             tree = new TreeView();
             tree.Dock = DockStyle.Left;
@@ -95,15 +95,15 @@ namespace FormElements
             {
                 Height = 500,
                 Width = 500,
-                Image = new Bitmap(@"C:\Users\opilane\source\repos\FormElements\razes\close.jpg"),
+                Image = new Bitmap(@"../../razes/close.jpg"),
                 Location = new Point(768, 500)
             };
             pcx.Click += Pcx_Click;
 
-            Image dotaImg = Image.FromFile(@"C:\Users\opilane\source\repos\FormElements\faces\dota.jpg");
-            Image maksImg = Image.FromFile(@"C:\Users\opilane\source\repos\FormElements\faces\maksim.jpg");
-            Image zhukiImg = Image.FromFile(@"C:\Users\opilane\source\repos\FormElements\faces\zhuki.jpg");
-            Image vitasImg = Image.FromFile(@"C:\Users\opilane\source\repos\FormElements\faces\vitas.jpg");
+            Image dotaImg = Image.FromFile(@"../../faces/dota.jpg");
+            Image maksImg = Image.FromFile(@"../../faces/maksim.jpg");
+            Image zhukiImg = Image.FromFile(@"../../faces/zhuki.jpg");
+            Image vitasImg = Image.FromFile(@"../../faces/vitas.jpg");
 
             //играть музыку или нет
             chk = new CheckBox
@@ -321,8 +321,8 @@ namespace FormElements
 
         private void Rad_CheckedChanged(object sender, EventArgs e)
         {
-            Image back = Image.FromFile(@"C:\Users\opilane\source\repos\FormElements\norm.jpg");
-            Image back2 = Image.FromFile(@"C:\Users\opilane\source\repos\FormElements\330x192.png");
+            Image back = Image.FromFile(@"../../norm.jpg");
+            Image back2 = Image.FromFile(@"../../330x192.png");
             if (rad.Checked) this.BackgroundImage = back;
             else this.BackgroundImage = back2;
         }
@@ -385,17 +385,17 @@ namespace FormElements
             switch (count)
             {
                 case 1:
-                    pcx.Image = new Bitmap(@"C:\Users\opilane\source\repos\FormElements\razes\close.jpg");
+                    pcx.Image = new Bitmap(@"../../razes\close.jpg");
                     count++;
                     coil.Play();
                     break;
                 case 2:
-                    pcx.Image = new Bitmap(@"C:\Users\opilane\source\repos\FormElements\razes\mid.png");
+                    pcx.Image = new Bitmap(@"../../razes\mid.png");
                     count++;
                     coil.Play();
                     break;
                 case 3:
-                    pcx.Image = new Bitmap(@"C:\Users\opilane\source\repos\FormElements\razes\far.png");
+                    pcx.Image = new Bitmap(@"../../razes\far.png");
                     count = 1;
                     coil.Play();
                     break;
